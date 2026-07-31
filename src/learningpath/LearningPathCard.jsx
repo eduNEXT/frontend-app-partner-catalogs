@@ -47,7 +47,7 @@ const cardButtons = {
 };
 
 const LearningPathCard = ({ learningPath, showFilters = false }) => {
-  const { formatMessage } = useIntl();
+  const { formatMessage, formatDate } = useIntl();
   const {
     id,
     image,
@@ -91,7 +91,7 @@ const LearningPathCard = ({ learningPath, showFilters = false }) => {
   const now = new Date();
   let accessText = '';
   if (minDate && minDate > now) {
-    const d = minDate.toLocaleDateString('en-US', {
+    const d = formatDate(minDate, {
       month: 'short',
       day: 'numeric',
       year: 'numeric',
@@ -103,7 +103,7 @@ const LearningPathCard = ({ learningPath, showFilters = false }) => {
     );
     statusVariant = 'upcoming';
   } else if (maxDate) {
-    const d = maxDate.toLocaleDateString('en-US', {
+    const d = formatDate(maxDate, {
       month: 'short',
       day: 'numeric',
       year: 'numeric',

@@ -30,7 +30,7 @@ export const CourseCard = ({
   orientationOverride,
   showFilters = false,
 }) => {
-  const { formatMessage } = useIntl();
+  const { formatMessage, formatDate } = useIntl();
   const {
     name,
     org,
@@ -41,7 +41,7 @@ export const CourseCard = ({
   } = course;
 
   const dateDisplay = startDate
-    ? new Date(startDate).toLocaleDateString('en-US', {
+    ? formatDate(new Date(startDate), {
       month: 'long',
       day: 'numeric',
       year: 'numeric',

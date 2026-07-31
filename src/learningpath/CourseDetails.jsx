@@ -34,7 +34,7 @@ const CourseDetailContent = ({
   onClose,
   learningPathTitle,
 }) => {
-  const { formatMessage } = useIntl();
+  const { formatMessage, formatDate } = useIntl();
   const {
     name,
     shortDescription,
@@ -47,7 +47,7 @@ const CourseDetailContent = ({
   } = course;
 
   const dateDisplay = endDate
-    ? new Date(endDate).toLocaleDateString('en-US', {
+    ? formatDate(new Date(endDate), {
       month: 'long',
       day: 'numeric',
       year: 'numeric',
