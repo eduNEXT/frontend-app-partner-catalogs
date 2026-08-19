@@ -24,3 +24,14 @@ export const buildCourseAboutUrl = (courseId) => {
   const trimmedBase = lmsBaseUrl.replace(/\/$/, '');
   return `${trimmedBase}/courses/${courseId}/about`;
 };
+
+export const mapApiError = (response, formatMessage, messages) => {
+  const code = response?.data?.code;
+  if (code === 'user_limit_reached') {
+    return formatMessage(messages.userLimitReached);
+  }
+  if (code === 'catalog_unavailable') {
+    return formatMessage(messages.catalogUnavailable);
+  }
+  return response?.data?.detail || formatMessage(messages.failedToLoadDetail);
+};
