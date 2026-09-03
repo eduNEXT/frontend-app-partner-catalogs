@@ -205,6 +205,7 @@ CourseCard.propTypes = {
 export const CourseCardWithEnrollment = ({
   course, learningPathId, isEnrolledInLearningPath, onClick, orientationOverride,
 }) => {
+  const { formatMessage } = useIntl();
   const { data: catalogCourses } = useCatalogCourses(learningPathId);
   const enrollCourseMutation = useEnrollCourse(learningPathId);
   const { showToast } = useToast();
