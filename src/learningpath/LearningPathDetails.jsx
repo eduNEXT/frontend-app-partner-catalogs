@@ -27,7 +27,7 @@ import CourseDetailPage from './CourseDetails';
 import DataSharingAuthorizationModal from './DataSharingAuthorizationModal';
 import { CoursesWithProgressList } from './progress';
 import { useScreenSize } from '../hooks/useScreenSize';
-import { buildCourseAboutUrl } from './utils';
+import { buildCourseAboutUrl, mapApiError } from './utils';
 import messages from './message';
 import { useToast } from '../hooks/useToast';
 
@@ -87,7 +87,7 @@ const LearningPathDetailPage = () => {
         navigate('/');
       },
       onError: ({ response }) => {
-        showToast(response.data.detail);
+        showToast(mapApiError(response, formatMessage, messages));
       },
 
     });
@@ -112,7 +112,7 @@ const LearningPathDetailPage = () => {
           setActiveTab('courses');
         },
         onError: ({ response }) => {
-          showToast(response.data.detail);
+          showToast(mapApiError(response, formatMessage, messages));
           setEnrolling(false);
         },
       });

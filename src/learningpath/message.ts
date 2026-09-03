@@ -109,6 +109,17 @@ const messages = defineMessages({
   paginationCurrentPage: { id: 'learningpath.pagination.current_page', defaultMessage: 'Current Page' },
   paginationPageOfCount: { id: 'learningpath.pagination.page_of_count', defaultMessage: 'of' },
   paginationNavLabel: { id: 'learningpath.pagination.nav_label', defaultMessage: 'learning items navigation' },
+
+  userLimitReached: {
+    id: 'learningpath.error.user_limit_reached',
+    defaultMessage: 'This catalog has no seats available at the moment. Contact your training manager to request access.',
+    description: 'Error shown when a learner tries to accept an invitation but the catalog is full',
+  },
+  catalogUnavailable: {
+    id: 'learningpath.error.catalog_unavailable',
+    defaultMessage: 'This catalog is not currently available. It can only be accessed within its configured availability period.',
+    description: 'Error shown when a learner tries to accept an invitation but the catalog is inactive',
+  },
 });
 
 export default messages;

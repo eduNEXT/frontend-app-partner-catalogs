@@ -19,7 +19,7 @@ import {
   usePrefetchCourseDetail, useEnrollCourse, useOrganizations,
   useCatalogCourses, useCourseCertificate,
 } from './data/queries';
-import { buildCourseHomeUrl } from './utils';
+import { buildCourseHomeUrl, mapApiError } from './utils';
 import { useScreenSize } from '../hooks/useScreenSize';
 
 export const CourseCard = ({
@@ -205,6 +205,7 @@ CourseCard.propTypes = {
 export const CourseCardWithEnrollment = ({
   course, learningPathId, isEnrolledInLearningPath, onClick, orientationOverride,
 }) => {
+  const { formatMessage } = useIntl();
   const { data: catalogCourses } = useCatalogCourses(learningPathId);
   const enrollCourseMutation = useEnrollCourse(learningPathId);
   const { showToast } = useToast();
@@ -241,7 +242,7 @@ export const CourseCardWithEnrollment = ({
         window.location.href = courseHomeUrl;
       },
       onError: ({ response }) => {
-        showToast(response?.data?.detail || 'Enrollment failed');
+        showToast(mapApiError(response, formatMessage, messages));
       },
     });
   };
