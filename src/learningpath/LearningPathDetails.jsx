@@ -27,7 +27,6 @@ import CourseDetailPage from './CourseDetails';
 import DataSharingAuthorizationModal from './DataSharingAuthorizationModal';
 import { CoursesWithProgressList } from './progress';
 import { useScreenSize } from '../hooks/useScreenSize';
-import { buildCourseAboutUrl } from './utils';
 import messages from './message';
 import { useToast } from '../hooks/useToast';
 
@@ -143,12 +142,6 @@ const LearningPathDetailPage = () => {
     }
     return maxDate;
   }, [coursesForPath]);
-
-  // In the details view, open the course details modal.
-  const handleCourseViewButton = (courseId) => {
-    setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 10);
-    window.open(buildCourseAboutUrl(courseId), '_blank', 'noopener,noreferrer');
-  };
 
   const handleCloseCourseModal = () => {
     setSelectedCourseKey(null);
@@ -381,7 +374,6 @@ const LearningPathDetailPage = () => {
                       courses={coursesForPath}
                       learningPathSteps={detail?.steps}
                       learningPathId={key}
-                      onCourseClick={handleCourseViewButton}
                       isEnrolledInLearningPath={isEnrolledInLearningPath}
                     />
                   )}
@@ -401,7 +393,6 @@ const LearningPathDetailPage = () => {
                       learningPathSteps={detail?.steps}
                       learningPathId={key}
                       isEnrolledInLearningPath={isEnrolledInLearningPath}
-                      onCourseClick={handleCourseViewButton}
                     />
                   )}
                 </section>
